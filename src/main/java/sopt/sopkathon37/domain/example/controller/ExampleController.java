@@ -16,7 +16,7 @@ import sopt.sopkathon37.global.response.BaseResponse;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/examples")
+@RequestMapping("/api/examples")
 public class ExampleController implements ExampleControllerDocs {
 
     private final ExampleService exampleService;
