@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sopt.sopkathon37.domain.booking.controller.dto.BookingRequest;
@@ -21,7 +22,7 @@ public class BookingController {
 
     @PostMapping
     public ResponseEntity<BaseResponse<Void>> booking(
-        @Valid BookingRequest request
+        @Valid @RequestBody BookingRequest request
     ) {
         bookingService.booking(request.toBookingCommand());
         return ApiResponseUtil.success(SuccessMessage.CREATED);
