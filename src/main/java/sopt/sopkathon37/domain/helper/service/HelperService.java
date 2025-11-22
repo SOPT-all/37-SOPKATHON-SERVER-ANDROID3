@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import sopt.sopkathon37.domain.helper.controller.dto.response.HelperDetailResponse;
-import sopt.sopkathon37.domain.helper.controller.dto.response.HelperListElementResponse;
 import sopt.sopkathon37.domain.helper.repository.Helper;
 import sopt.sopkathon37.domain.helper.repository.HelperRepository;
+import sopt.sopkathon37.global.exception.ServerException;
+import sopt.sopkathon37.global.message.ErrorMessage;
 
 @Service
 @RequiredArgsConstructor
@@ -18,14 +18,12 @@ public class HelperService {
 
 	private final HelperRepository helperRepository;
 
-	public List<HelperListElementResponse> getAllHelpers() {
-		return helperRepository.findAll().stream()
-				.map(HelperListElementResponse::from)
-				.toList();
+	public List<Helper> getAllHelpers() {
+		return helperRepository.findAll();
 	}
 
-	public HelperDetailResponse getHelperById(final long id) {
-		Helper helper = helperRepository.findByIdWithOffers(id).orElseThrow(IllegalArgumentException::new);
-		return HelperDetailResponse.from(helper);
+	public Helper getHelperById(final long id) {
+		return helperRepository.findByIdWithOffers(id)
+				.orElseThrow(() -> new ServerException(ErrorMessage.NOT_FOUND));
 	}
 }

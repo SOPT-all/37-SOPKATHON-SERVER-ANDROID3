@@ -27,13 +27,13 @@ public class HelperController implements HelperControllerDocs {
 	@GetMapping
 	public ResponseEntity<BaseResponse<List<HelperListElementResponse>>> getHelperList() {
 		return ApiResponseUtil.success(SuccessMessage.SUCCESS,
-				helperService.getAllHelpers());
+				helperService.getAllHelpers().stream().map(HelperListElementResponse::from).toList());
 	}
 
 	@GetMapping(path = "/{helperId}")
 	public ResponseEntity<BaseResponse<HelperDetailResponse>> getHelperDetail(
 			@PathVariable(name = "helperId") final long helperId) {
 		return ApiResponseUtil.success(SuccessMessage.SUCCESS,
-				helperService.getHelperById(helperId));
+				HelperDetailResponse.from(helperService.getHelperById(helperId)));
 	}
 }
