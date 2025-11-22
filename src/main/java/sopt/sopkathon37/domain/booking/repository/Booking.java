@@ -13,10 +13,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import sopt.sopkathon37.domain.helper.repository.Helper;
 import sopt.sopkathon37.domain.serviceoffer.repository.ServiceOffer;
@@ -63,6 +66,12 @@ public class Booking {
 
     @Column(nullable = false)
     private String locate;
+
+    @CreatedDate
+    private LocalDateTime createAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
     @Builder
     private Booking(ServiceOffer serviceOffer, Helper helper, String specialRequests,
