@@ -48,7 +48,7 @@ jobs:
         script: |
           cd /home/ubuntu
           
-          CURRENT_PID=$(pgrep -fla java | grep "*.jar" | awk '{print $1}')
+          CURRENT_PIDS=$(ps -ef | grep "\.jar" | grep -v grep | awk '{print $2}')
           if [ -z "$CURRENT_PIDS" ]; then
             echo "No running application found."
           else
