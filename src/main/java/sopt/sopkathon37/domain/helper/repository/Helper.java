@@ -34,9 +34,6 @@ public class Helper {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String location;
-
     @Column(nullable = false, columnDefinition = "TEXT")
     private String about;
 
