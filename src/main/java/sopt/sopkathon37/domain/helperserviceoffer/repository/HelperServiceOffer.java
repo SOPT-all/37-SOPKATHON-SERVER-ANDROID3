@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,7 +44,10 @@ public class HelperServiceOffer {
     private ServiceOffer serviceOffer;
 
     @Column(nullable = false)
-    private String timeTaken;
+    private int timeTaken;
+
+    @Column(nullable = false)
+    private BigDecimal serviceFee;
 
     @CreatedDate
     private LocalDateTime createAt;
