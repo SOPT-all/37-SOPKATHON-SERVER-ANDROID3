@@ -42,7 +42,7 @@ public class HelperServiceOffer {
     private ServiceOffer serviceOffer;
 
     @Column(nullable = false)
-    private String timeTaken;
+    private int timeTaken;
 
     @CreatedDate
     private LocalDateTime createAt;

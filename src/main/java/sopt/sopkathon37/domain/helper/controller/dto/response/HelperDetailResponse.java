@@ -40,11 +40,13 @@ public record HelperDetailResponse(
 	}
 
 	private record ServiceOfferInfo(
+			long serviceOfferId,
 			String name,
-			String takenTime
+			int takenTime
 	){
 		private static ServiceOfferInfo from(HelperServiceOffer helperServiceOffer) {
 			return new ServiceOfferInfo(
+					helperServiceOffer.getServiceOffer().getId(),
 					helperServiceOffer.getServiceOffer().getName(),
 					helperServiceOffer.getTimeTaken()
 			);
