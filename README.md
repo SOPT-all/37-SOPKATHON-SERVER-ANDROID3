@@ -282,3 +282,7 @@ public class GlobalExceptionHandler {
 - Swagger UI: http://localhost:8080/swagger-ui.html
 - OpenAPI JSON: http://localhost:8080/openapi
 
+## 🏗️ Service Architecture
+
+![솝커톤](https://github.com/user-attachments/assets/3a63c775-f329-495d-81c5-c344d03e8ea0)
+
