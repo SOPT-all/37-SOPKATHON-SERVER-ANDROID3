@@ -59,4 +59,4 @@ jobs:
             exit 1
           fi
     
-          nohup java -jar "$JAR" &
+          nohup java -jar -Duser.timezone=Asia/Seoul "$JAR" > nohup.out 2>&1 &
