@@ -47,8 +47,8 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           cd /home/ubuntu
-              
-          PID=$(pgrep -f "java -jar" || true)
+          
+          PID=$(pgrep -f "*SNAPSHOT.jar" || true)
           if [ -n "$PID" ]; then
             kill -9 $PID
           fi
@@ -60,5 +60,3 @@ jobs:
           fi
     
           nohup java -jar "$JAR" &
-          
-          exit 0
