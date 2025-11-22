@@ -37,6 +37,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         source: "build/libs/*SNAPSHOT.jar"
         target: /home/ubuntu
+        strip_components: 2
 
     - name: Restart Spring Boot on EC2
       uses: appleboy/ssh-action@master
@@ -59,3 +60,5 @@ jobs:
           fi
     
           nohup java -jar "$JAR" &
+          
+          exit 0
