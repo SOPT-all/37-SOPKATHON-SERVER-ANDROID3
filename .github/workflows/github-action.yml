@@ -48,15 +48,20 @@ jobs:
         script: |
           cd /home/ubuntu
           
-          PID=$(pgrep -f "*SNAPSHOT.jar" || true)
+          CURRENT_PID=$(pgrep -fla java | grep "$JAR_NAME" | awk '{print $1}')
           if [ -n "$PID" ]; then
             kill -9 $PID
           fi
     
           JAR=$(ls *.jar 2>/dev/null | head -n 1)
-          if [ -z "$JAR" ]; then
-            echo "No jar file found."
-            exit 1
+          if [ -z "$CURRENT_PIDS" ]; then
+            echo "No running application found."
+          else
+            echo "Killing running application(s): $CURRENT_PIDS"
+            for pid in $CURRENT_PIDS; do
+              kill -15 $pid
+            done
+            sleep 5
           fi
     
           nohup java -jar -Duser.timezone=Asia/Seoul "$JAR" > nohup.out 2>&1 &
